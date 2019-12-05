@@ -37,9 +37,12 @@ export default () => {
     setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)])
   }
 
+  console.log('debugging')
   if (!randomQuote) {
+    console.log('debugging from inside', randomQuote)
     generateQuote()
   }
+  console.log('debugging from outside', randomQuote)
 
   return (
     <div className="flex justify-center mt-32">
