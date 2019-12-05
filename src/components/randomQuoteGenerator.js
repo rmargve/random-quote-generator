@@ -21,14 +21,10 @@ export default () => {
   `)
 
   const quotes = data.allDataJson.edges[0].node.quotes
-    console.log('from outside')
   const [randomQuote, setRandomQuote] = useState(() => {
-    
     const initialQuote = generateQuote()
-    console.log('from inside', initialQuote)
     return initialQuote
   })
-  console.log('from outSide', randomQuote)
 
   function generateQuote() {
     return quotes[Math.floor(Math.random() * quotes.length)]
