@@ -21,14 +21,10 @@ export default () => {
   `)
 
   const quotes = data.allDataJson.edges[0].node.quotes
-  const [randomQuote, setRandomQuote] = useState(() => {
-    const initialQuote = generateQuote()
-    return initialQuote
+  const [randomQuote, setRandomQuote] = useState({
+    quote: "Only the wise can find quote button",
+    author: "me, probably",
   })
-
-  function generateQuote() {
-    return quotes[Math.floor(Math.random() * quotes.length)]
-  }
 
   return (
     <div className="flex justify-center mt-32">
@@ -41,7 +37,9 @@ export default () => {
         </p>
       </div>
       <button
-        onClick={() => setRandomQuote(generateQuote())}
+        onClick={() =>
+          setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)])
+        }
         className="bg-teal-700 ml-8 w-32 shadow-xl outline-none"
       ></button>
     </div>
