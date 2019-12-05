@@ -43,8 +43,8 @@ export default () => {
 
   return (
     <div className="flex justify-center mt-32">
-      <div className="bg-teal-600  max-w-lg flex-initial rounded-lg shadow-xl text-white">
-        <p className="text-center text-3xl m-6 font-bold">
+      <div className="bg-teal-600  max-w-3xl flex-initial rounded-lg shadow-xl text-white">
+        <p className="text-center text-3xl m-6 font-normal">
           {randomQuote ? randomQuote.quote : ""}
         </p>
         <p className="text-right text-xl m-4">
