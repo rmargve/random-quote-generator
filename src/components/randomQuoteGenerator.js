@@ -3,9 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import "../styles/style.css"
 
-function useQuotePool() {
-  const [quotePool, setQuotesPool] = useState([])
-
+export default () => {
   const data = useStaticQuery(graphql`
     query fetchQuotes {
       allDataJson {
@@ -22,27 +20,16 @@ function useQuotePool() {
     }
   `)
 
-  if (!quotePool.length) {
-    setQuotesPool(data.allDataJson.edges[0].node.quotes)
-  }
+  const quotes = data.allDataJson.edges[0].node.quotes
 
-  return quotePool
-}
-
-export default () => {
-  const quotes = useQuotePool()
-  const [randomQuote, setRandomQuote] = useState()
+  const [randomQuote, setRandomQuote] = useState(() => {
+    const initialQuote = generateQuote()
+    return initialQuote
+  })
 
   function generateQuote() {
-    setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)])
+    return quotes[Math.floor(Math.random() * quotes.length)]
   }
-
-  console.log('debugging')
-  if (!randomQuote) {
-    console.log('debugging from inside', randomQuote)
-    generateQuote()
-  }
-  console.log('debugging from outside', randomQuote)
 
   return (
     <div className="flex justify-center mt-32">
@@ -54,8 +41,10 @@ export default () => {
           {randomQuote ? randomQuote.author : ""}
         </p>
       </div>
-      <button onClick={generateQuote} className="bg-teal-700 ml-8 w-32 shadow-xl outline-none">
-      </button>
+      <button
+        onClick={() => setRandomQuote(generateQuote())}
+        className="bg-teal-700 ml-8 w-32 shadow-xl outline-none"
+      ></button>
     </div>
   )
 }
