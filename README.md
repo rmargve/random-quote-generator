@@ -14,6 +14,10 @@ Solution I came with next day was css "bounce" animation
     transform: scale(0.1);
     opacity: 0;
   }
+  50% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
   100% {
     transform: scale(1);
     opacity: 1;
