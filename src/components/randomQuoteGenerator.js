@@ -21,14 +21,14 @@ export default () => {
   `)
 
   const quotes = data.allDataJson.edges[0].node.quotes
-  const [randomQuote, setRandomQuote] = useState({
-    quote: "Only the wise can find quote button",
-    author: "me, probably",
+  const [randomQuote, setRandomQuote] = useState(() => {
+    const initialQuote = quotes[Math.floor(Math.random() * quotes.length)]
+    return initialQuote
   })
 
   return (
     <div className="flex justify-center mt-32">
-      <div className="bg-teal-600  max-w-3xl flex-initial rounded-lg shadow-xl text-white">
+      <div className="bg-teal-600  max-w-3xl flex-initial rounded-lg shadow-xl text-white bounce">
         <p className="text-center text-3xl m-6 font-normal">
           {randomQuote ? randomQuote.quote : ""}
         </p>
